@@ -2,7 +2,7 @@ import time
 from task2 import keys
 
 HEX = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
-start_time = time.time()
+start_time = time.perf_counter()
 
 
 def broot(k):
@@ -23,7 +23,9 @@ def broot(k):
                 continue
         result = '0x' + ''.join([str(i) for i in res])
         found_keys.append(result)
-    print('Time', f'{((time.time() - start_time) * 1000):.3f}', ' ms')
+        print(f'Founded key! {result}')
+        print(f'in: {(time.perf_counter() - start_time) * 1000:.4f} ms')
+
     print('Generated keys: \n', keys)
     print('Founded kyes: \n', found_keys)
     print('List Hashes:', a := hash(tuple(found_keys)), b := hash(tuple(keys)), a == b)
