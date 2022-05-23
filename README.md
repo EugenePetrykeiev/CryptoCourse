@@ -6,9 +6,12 @@
 python ./day1/task3.py
 ```
 
-### Result
+### Results
 
 ```sh
-Time 15.635  ms
+python -m cProfile -ms time task3.py 
+```
+```sh
+2770 function calls (2714 primitive calls) in 0.018 seconds
 ```
 >Для удобства, выводятся сгенерированные ключи и найденные ключи. Также береться их хеш и сравнивается для проверки полного совпадения списков.
