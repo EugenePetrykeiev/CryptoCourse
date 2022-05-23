@@ -1,4 +1,3 @@
-# from main import input_list
 BASE = 2
 SEQUENCE = list(map(lambda x: 2 ** x, [i for i in range(3, 13)]))
 

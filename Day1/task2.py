@@ -1,6 +1,5 @@
 from task1 import SEQUENCE
 import random
-# from main import input_list
 
 
 def key_generator(rng: list) -> list:

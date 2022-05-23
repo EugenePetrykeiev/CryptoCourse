@@ -7,7 +7,6 @@ start_time = time.time()
 
 def broot(k):
     found_keys = []
-    # iter_res = ''
     for key in k:
         list_num = list(key[2:])
         mask = list(['0'] * len(list_num))
@@ -20,20 +19,15 @@ def broot(k):
                     mask[index] = dig
                     if list_num[index] == str(mask[index]):
                         res[index] = mask[index]
-                    # iter_res = '0x' + ''.join([str(i) for i in mask])
-                    # print(iter_res)
             else:
                 continue
         result = '0x' + ''.join([str(i) for i in res])
         found_keys.append(result)
-        # print(result)
-    print(found_keys)
     print('Time', f'{((time.time() - start_time) * 1000):.3f}', ' ms')
-    print(keys)
+    print('Generated keys: \n', keys)
+    print('Founded kyes: \n', found_keys)
     print('List Hashes:', a := hash(tuple(found_keys)), b := hash(tuple(keys)), a == b)
 
-
-broot(keys)
 
 if __name__ == '__main__':
     broot(keys)
