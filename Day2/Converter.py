@@ -1,6 +1,7 @@
 from numpy import ravel
 
-hex_literals = {'A': '10', 'B': '11', 'C': '12','D': '13', 'E': '14', 'F': '15'}
+hex_literals = {'a': '10', 'b': '11', 'c': '12', 'd': '13', 'e': '14', 'f': '15', 'A': '10', 'B': '11', 'C': '12',
+                'D': '13', 'E': '14', 'F': '15'}
 hex_digits = {v: k for k, v in hex_literals.items()}
 base = 16
 
@@ -30,8 +31,11 @@ class Converter:
     @classmethod
     def to_little_endian(cls, h: str) -> int:
         hex_str = [hex_literals.get(i, i) for i in list(h)[2:]]
+        hex_str = hex_str if len(hex_str) % 2 == 0 else ['0'] + hex_str
         hex_number = [hex_str[i:i + 2] for i in range(0, len(hex_str), 2)][::-1]
+        print(hex_number)
         hex_number = list(ravel(hex_number))[::-1]
+        print(hex_number)
         result = sum([int(hex_number[i]) * (base ** i) for i in range(len(hex_number) - 1, -1, -1)])
         print('Value to little endian: ', result)
         return result
@@ -58,6 +62,8 @@ class Converter:
             hex_num.append(str(remainder))
         hex_num.reverse()
         result = [hex_digits.get(i, i) for i in hex_num]
+        result = list(ravel([result[i:i + 2] for i in range(0, len(result), 2)][::-1]))
+        result = result[1:] if result[0] == '0' else result
         while len(result) < lit_num:
             result.append('0')
         result = '0x' + ''.join([i for i in result])
@@ -90,4 +96,3 @@ class Converter:
             from_d = cls.from_big_endian(d)
             to_d = cls.to_big_endian(from_d)
             print('Checksum: ', a := hash(d), b := hash(to_d), a == b)
-
