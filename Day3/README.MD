@@ -1,101 +1,47 @@
 # Blockchain course
 
-## Day 2
+## Day 3
 
-Написать библиотеку, позволяющую:
+Реализовать хеш-функцию. SHA-1
 
-- Преобразование HEX значения в Little Endian значение
-- Преобразование HEX значения в Big Endian значение
-- Преобразование Little Endian значения в HEX значение
-- Преобразование BIG Endian значения в HEX значение
+Для запуска использовать
 
-Основной файл запуска программы:
-
-```sh
-python ./day2/main.py
+```
+python main.py
 ```
 
-## Методы для использования
+Результаты разных входов
 
-### HEX 2 INT
+#### Input
 
-```python 
-hex_to_int(h: str, end: str)
+> 123456
+
+#### Output
+
 ```
-
-Принимает в качестве аргументов __hex__ число в формате __str__ и порядок байт - __big__ или __little__. Для
-самоконтроля делает обратное преобразование _from ...-endian to hex_ и проверяется контрольная сумма ответов.
-
-```python
-from Converter import Converter as Cnv
-
-Cnv.hex_to_int('0xabcdef', 'big')
+8cb2237d0679ca88db6464eac60da96345513964
+8cb2237d0679ca88db6464eac60da96345513964
+True
 ```
+#### Input
 
-> Value to big endian:  11259375 Value from big endian:  0xABCDEF
-> Checksum:  4255365060916225561 4255365060916225561 True
+> Hello, world
 
-### INT 2 HEX
+#### Output
 
-Принимает в качестве аргументов __dec__ число в формате __int__ и порядок байт - __big__ или __little__. Для
-самоконтроля делает обратное преобразование _from ...-endian to dec_ и проверяется контрольная сумма ответов.
-
-```python
-from Converter import Converter as Cnv
-
-Cnv.int_to_hex(255, 'little', bytes_num=32)
 ```
-
-> Value from little endian:  0xFF00000000000000000000000000000000000000000000000000000000000000 Value to little endian:  255
-> Checksum:  255 255 True
-
-### HEX 2 BIG-ENDIAN
-
-```python
-to_big_endian(h: str) -> int:
+e02aa1b106d5c7c6a98def2b13005d5b84fd8dc8
+e02aa1b106d5c7c6a98def2b13005d5b84fd8dc8
+True
 ```
+#### Input
 
-Принимает в качестве аргумента __hex__ число в формате __str__ и возвращает число в порядке байт - Big-endian. Возращает
-big-endian число типа __int__
+> The quick brown fox jumps over the lazy dog
 
-### HEX 2 LITTLE-ENDIAN
+#### Output
 
-```python
-to_little_endian(h: str) -> int:
 ```
-
-### BIG-ENDIAN DEC 2 HEX
-
-Принимает в качестве аргумента __dec__ число в формате __int__ и возвращает __hex__ значение в порядке байт -
-Big-endian, в формате __str__.
-
-```python
-from_big_endian(d: int) -> str:
-```
-
-### LITTLE-ENDIAN DEC 2 HEX
-
-Принимает в качестве аргумента __dec__ число в формате __int__, и количество байт для _hex_ значения. Возвращает __hex__
-число в порядке байт - Big-endian, в формате __str__.
-
-```python
-from_big_endian(d: int) -> str:
-```
-
-### HEX 2 BINARY BIG ENDIAN
-
-Принимает в качестве аргумента __hex__ число в формате __str__. Возвращает бинарное значение разделенное по 8 бит, в
-порядке байт - Big-endian
-
-```python
-hex_to_binary_be(h: str) -> list:
-```
-
-### HEX 2 BINARY LITTLE ENDIAN
-
-Принимает в качестве аргумента __hex__ число в формате __str__. Возвращает бинарное значение разделенное по 8 бит, в
-порядке байт - Little-endian
-
-```python
-hex_to_binary_le(d: str) -> list:
+2fd4e1c67a2d28fced849ee1bb76e7391b93eb12
+2fd4e1c67a2d28fced849ee1bb76e7391b93eb12
+True
 ```
