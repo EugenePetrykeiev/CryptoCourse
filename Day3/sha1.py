@@ -63,7 +63,6 @@ def core_counting(wrd: list):
         h2 = h2 + c & 0xFFFFFFFF
         h3 = h3 + d & 0xFFFFFFFF
         h4 = h4 + e & 0xFFFFFFFF
-        print(hex(h0)[2:])
         digest = hex(h0)[2:].zfill(8) + \
                  hex(h1)[2:].zfill(8) + \
                  hex(h2)[2:].zfill(8) + \
