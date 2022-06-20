@@ -1,10 +1,11 @@
-from DivBlocks import divide_into_blocks
+from PaddingBlocks import padding_blocks
 from RoundKey import add_round_key
 from SubWord import sub_word
 from ShiftRows import shift_rows
 from MixColums import mix_columns
 from KeyExpansion import key_expansion
 from ConcatBlocks import from_blocks_to_text
+from BlockToHex import block_hex
 
 
 def aes_encryption(plain_text: str, secret_key: str, Nb: int = 4, Nr: int = 10) -> str:
@@ -14,19 +15,25 @@ def aes_encryption(plain_text: str, secret_key: str, Nb: int = 4, Nr: int = 10) 
     if len(secret_key) > 16:
         raise 'Length of secret key greater than 16 bytes'
 
-    state = divide_into_blocks(plain_text, '0x00')
-    block_key = divide_into_blocks(secret_key, '0x01')
+    state = padding_blocks(plain_text)
+    block_key = padding_blocks(secret_key)
     hex_key = [[j[2:] for j in i] for i in block_key[0]]
-    print('State:',state)
-    print('Hex key:', hex_key)
-    print('Blocks:', block_key)
+    state_hex = block_hex(state)
+    key_hex = block_hex(block_key)
     schedule_key = key_expansion(hex_key)
     key = from_blocks_to_text(block_key)
 
     print('Plain text: ', plain_text)
-
     print('Key: ', key)
 
+    print('Hex state:', state_hex)
+    print('Hex Key: ', key_hex)
+
+    print('Blocks:')
+    for i in state:
+        for j in i:
+            print(j)
+        print(' ')
     for block in state:
         round_key = add_round_key(block, block_key[0])
         mix_key = round_key

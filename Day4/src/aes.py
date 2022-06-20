@@ -1,4 +1,4 @@
-from DivBlocks import *
+from PaddingBlocks import *
 from ConcatBlocks import *
 from BlockToHex import *
 from RoundKey import *
@@ -15,7 +15,7 @@ Nb = 4
 if __name__ == '__main__':
     if len(plain_text) > 128:
         raise 'Length of plain text greater than 128 bytes'
-    state = divide_into_blocks(plain_text, '0x00')
+    state = padding_blocks(plain_text, '0x00')
     text = from_blocks_to_text(state)
     hex_str = block_hex(state)
     print('Input Text: ', text)
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     if len(secret_key) > 16:
         raise 'Length of secret key greater than 16 bytes'
-    block_key = divide_into_blocks(secret_key, '0x00')
+    block_key = padding_blocks(secret_key, '0x00')
     key = from_blocks_to_text(block_key)
     hex_str = block_hex(block_key)
     print('Text key: ', key)

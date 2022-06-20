@@ -1,15 +1,16 @@
-def divide_into_blocks(text: str, extend: str = None) -> list:
+def padding_blocks(text: str) -> list:
     block_size = 16
     input_block = []
     col_size = 4
     div16blocks = [text[i:i + block_size] for i in range(0, len(text), block_size)]
     for block in div16blocks:
         block = [hex(ord(i)) for i in block]
-        while len(block) < block_size:
-            if extend is None:
-                block.append(block[-1])
+        while 0 < len(block) < block_size:
+            # ISO/IEC 9797-1
+            if len(block) == block_size - 1:
+                block.append('0x01')
             else:
-                block.append(extend)
+                block.append('0x00')
         div_block = [block[i:i + col_size] for i in range(0, len(block), col_size)]
         for i in range(len(div_block)):
             for j in range(i):

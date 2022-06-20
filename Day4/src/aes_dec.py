@@ -1,4 +1,4 @@
-from DivBlocks import div_hex_into_blocks, divide_into_blocks
+from PaddingBlocks import div_hex_into_blocks, padding_blocks
 from RoundKey import add_round_key
 from SubWord import sub_word, inv_sub_word
 from ShiftRows import shift_rows, inv_shift_rows
@@ -14,7 +14,7 @@ Nk = 4
 
 def decrypt(cipher_text: str, secret_key: str) -> str:
     state = div_hex_into_blocks(cipher_text)
-    block_key = divide_into_blocks(secret_key)
+    block_key = padding_blocks(secret_key)
     hex_key = [[j[2:] for j in i] for i in block_key[0]]
     schedule_key = key_expansion(hex_key)
     sub_key = [i[Nb * Nr:Nb * (Nr + 1)] for i in schedule_key]
