@@ -1,5 +1,5 @@
-from MiniBlockchain.src.KeyPair import PublicKey, PrivateKey
-from MiniBlockchain.src.Signature import Signature
+from MiniBlockchain.old.KeyPair import PublicKey, PrivateKey
+from MiniBlockchain.old.Signature import Signature
 
 pub_key_path = './keys/public.pem'
 private_key_path = './keys/private.pem'
@@ -11,5 +11,6 @@ publicKey = pub()
 
 sign = Signature(pub_key_path, private_key_path)
 sign.verifySignature()
-sign.signData('New Transaction')
+s = sign.signData('New Transaction')
+print(s)
 sign.printSignature()

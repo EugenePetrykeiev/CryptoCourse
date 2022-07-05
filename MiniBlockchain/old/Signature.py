@@ -12,17 +12,16 @@ class Signature:
         self.public_key = pub_key
         self.private_key = sec_key
 
-    def _get_keys_objects(self):
+    def _get_keys_objects(self) -> tuple:
         vk = VerifyingKey.from_pem(open(self.public_key).read())
         sk = SigningKey.from_pem(open(self.private_key).read())
         return sk, vk
 
-    def _serialized_hash(self, message: str):
+    def _serialized_hash(self, message: str) -> bytes:
         return bytes(sha256(message.encode('utf-8')).digest())
 
-    def verifySignature(self):
+    def verifySignature(self, message: str = "1234567890") -> bool:
         sk, vk = self._get_keys_objects()
-        message = "1234567890"
         hash_message = self._serialized_hash(message)
         sig = sk.sign(hash_message)
         try:

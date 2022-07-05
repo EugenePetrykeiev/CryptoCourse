@@ -1,13 +1,14 @@
 
-#KeyPair class
+# KeyPair class
 Класс для генерации публичного и приватного ключей при помощи алгоритма ECDSA 
 с использованием эллиптической кривой _SECP256k1_.
 Дополнительные классы PublicKey и PrivatKey возращают ключи формата HEX и генерируют пару ключей в стандартизированных файлах
 PEM формата.
 
-###Пример использования:
+### Пример использования:
+
 ````python
-from MiniBlockchain.src.KeyPair import PublicKey, PrivateKey
+from MiniBlockchain.old.KeyPair import PublicKey, PrivateKey
 
 private = PrivateKey()
 privateKey = private()
@@ -28,16 +29,17 @@ publicKey = pub()
 - genKeyPair
 - printKeyPair
 
-#Signature class
+# Signature class
 Класс предназначен для верификации пары ключей при помощи создания тестового сообщения и его подписи
 с дальнейшим расшифрованием и подтверждением верификации пары ключей.
 
 Метод ожидает путь к стандартизированным файлам PEM
 
-###Пример использования:
+### Пример использования:
 
 ````python
-from MiniBlockchain.src.Signature import Signature
+from MiniBlockchain.old.Signature import Signature
+
 pub_key_path = './keys/public.pem'
 private_key_path = './keys/private.pem'
 sign = Signature(pub_key_path, private_key_path)
