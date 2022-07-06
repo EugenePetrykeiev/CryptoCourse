@@ -1,7 +1,5 @@
 from KeyPair import KeyPair, PrivateKey, PublicKey
 from Singature import Signature
-import json
-import os
 from hashlib import sha256
 
 
@@ -40,6 +38,12 @@ class Account(KeyPair):
 
     def getBalance(self) -> int:
         return self.balance
+
+    def createPaymentOp(self, recive_account: object, amount: int, wallet_id: list) -> tuple:
+        self.amount = amount
+        self.wallet = wallet_id
+        print(self.wallet)
+        return recive_account, amount, wallet_id
 
     def printBalance(self) -> None:
         print('Current Balance: ', self.balance, ' coins')
