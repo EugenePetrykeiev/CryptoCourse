@@ -13,12 +13,13 @@ class Signature:
     def verifySignature(self, public_key: PublicKey, sign: bytes, message: str) -> bool:
         vk = VerifyingKey.from_string(public_key.key, curve=SECP256k1, hashfunc=sha256)
         message = message.encode('utf-8')
-        result = vk.verify(sign, message)  # True
-        return result
+        self.result = vk.verify(sign, message)  # True
+        return self.result
 
     def printSignature(self) -> None:
         print('Signature bytes: ', self._sign)
         print('Signature hex: ', self._sign.hex())
+        print('Verification status: ', self.result)
 
-    def toString(self):
-        return
+    def toString(self) -> str:
+        return self._sign.hex()

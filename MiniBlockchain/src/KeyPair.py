@@ -19,7 +19,7 @@ class PrivateKey:
 
 class KeyPair:
 
-    def __init__(self, private_key, public_key):
+    def __init__(self, public_key, private_key):
         if type(private_key) == str and type(public_key) == str:
             private_key = bytes.fromhex(private_key)
             public_key = bytes.fromhex(public_key)
@@ -47,10 +47,11 @@ class KeyPair:
         random_seed = PRNG(random_seed)
         sk = SigningKey.generate(curve=SECP256k1, entropy=random_seed, hashfunc=sha256)
         vk = sk.verifying_key
-        return KeyPair(PrivateKey(sk.to_string()).key, PublicKey(vk.to_string()).key)
+        return KeyPair(PublicKey(vk.to_string()).key, PrivateKey(sk.to_string()).key)
 
     def toString(self) -> tuple:
         return self.privateKey.key, self.publicKey.key
 
     def printKeyPair(self) -> None:
-        print(self.privateKey.key, self.publicKey.key)
+        print('Private key: ', self.privateKey.key)
+        print('Public key: ', self.publicKey.key)
