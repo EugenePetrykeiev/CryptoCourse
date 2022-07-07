@@ -16,7 +16,7 @@ class Operation:
         sender_balance = self.sender.getBalance()
         if self.amount <= sender_balance:
             sign_object = Signature()
-            sign_verify = sign_object.verifySignature(self.sender.wallet[0], self.sign, str(self.amount))
+            sign_verify = sign_object.verifySignature(self.sender.wallet[0][0], self.sign, self.sender.accountID + str(self.amount))
             if sign_verify:
                 return True
             else:
@@ -24,3 +24,7 @@ class Operation:
         else:
             print('Insufficient balance')
             return False
+
+    def printKeyPair(self):
+        print('Sender Wallet', self.sender.wallet)
+        print('Receiver Wallet', self.receiver.wallet)

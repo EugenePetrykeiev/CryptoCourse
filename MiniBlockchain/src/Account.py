@@ -5,7 +5,7 @@ from hashlib import sha256
 
 class Account(KeyPair):
 
-    def __init__(self, account_id: str, wallet: list, balance: int):
+    def __init__(self, account_id: str, wallet: list, balance: int = 0):
         assert account_id[:2] == '1f'
         self.accountID = account_id
         self.wallet = []
@@ -39,11 +39,8 @@ class Account(KeyPair):
     def getBalance(self) -> int:
         return self.balance
 
-    def createPaymentOp(self, receiver_account: object, amount: int, wallet_id: list) -> tuple:
-        self.amount = amount
-        self.wallet = wallet_id
-        print(self.wallet)
-        return receiver_account, amount, wallet_id
+    def createPaymentOp(self, receiver_account: object, amount: int, wallet_id: int) -> tuple:
+        return receiver_account, amount, self.wallet[wallet_id]
 
     def printBalance(self) -> None:
         print('Current Balance: ', self.balance, ' coins')
