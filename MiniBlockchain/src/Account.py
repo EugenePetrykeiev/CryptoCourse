@@ -7,7 +7,7 @@ class Account(KeyPair):
 
     def __init__(self, account_id: str, wallet: list, balance: int):
         assert account_id[:2] == '1f'
-        self.account_id = account_id
+        self.accountID = account_id
         self.wallet = []
         for w in wallet:
             if type(w[0]) == PublicKey and type(w[1]) == PrivateKey:
@@ -39,22 +39,22 @@ class Account(KeyPair):
     def getBalance(self) -> int:
         return self.balance
 
-    def createPaymentOp(self, recive_account: object, amount: int, wallet_id: list) -> tuple:
+    def createPaymentOp(self, receiver_account: object, amount: int, wallet_id: list) -> tuple:
         self.amount = amount
         self.wallet = wallet_id
         print(self.wallet)
-        return recive_account, amount, wallet_id
+        return receiver_account, amount, wallet_id
 
     def printBalance(self) -> None:
         print('Current Balance: ', self.balance, ' coins')
 
-    def signData(self, wallet: list, message: str) -> str:
+    def signData(self, wallet: list, message: str) -> bytes:
         sign_object = Signature()
         sign = sign_object.signData(wallet[1], message)
         return sign
 
     def toString(self) -> str:
-        return self.account_id
+        return self.accountID
 
     def print(self) -> None:
         print('Wallet keys: ')

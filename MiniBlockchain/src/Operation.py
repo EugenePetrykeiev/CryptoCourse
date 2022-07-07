@@ -22,4 +22,5 @@ class Operation:
             else:
                 return False
         else:
+            print('Insufficient balance')
             return False
