@@ -27,8 +27,8 @@ class Block:
                     print('Receiver Wallet Private Key: ', keys[1].key.hex())
                     print('Receiver Account Balance:', op.receiver.getBalance())
                     print('-----')
-                print('')
             print('Transaction hash ID: ', trx.transactionID)
+            print('')
         print('Block hash id: ', self.blockID, '\n')
         print('-----End of block-----')
 

@@ -15,12 +15,12 @@ def block_generator(sender, receiver, block_pool: int, prev_hash: str):
         signature3 = sender.signData(wallet3, message_to_sign2)
 
         op = Operation.createOperation(sender, receiver, amount, signature2)
-
         op2 = Operation.createOperation(sender, receiver, amount, signature3)
 
         trx = Transaction.createOperation([op], i)
+        trx.printKeyPair()
         trx2 = Transaction.createOperation([op2], i)
         block = Block.createBlock([trx,trx2], prev_hash)
-        # block.printKeyPair()
+        block.printKeyPair()
         blocks.append(block)
     return blocks
